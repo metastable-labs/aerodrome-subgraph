@@ -1,15 +1,14 @@
 import { createConfig } from "@ponder/core";
-import { erc20Abi, http } from "viem";
+import { http } from "viem";
 import { parseAbiItem } from "viem";
 import { PoolFactoryAbi } from "./abis/PoolFactoryAbi";
 import { PoolAbi } from "./abis/PoolAbi";
-import { ERC20Abi } from "./abis/ERC20Abi";
 
 export default createConfig({
   networks: {
     base: { 
       chainId: 8453, 
-      transport: http(process.env.PONDER_RPC_URL_8453) 
+      transport: http(process.env.PONDER_RPC_URL_8543) 
     },
   },
   contracts: {
@@ -27,11 +26,6 @@ export default createConfig({
         event: parseAbiItem("event PoolCreated(address indexed token0, address indexed token1, bool indexed stable, address pool, uint256)"),
         parameter: "pool"
       }
-    },
-    ERC20: {
-      network: "base",
-      abi: erc20Abi,
     }
   },
-  
 });
